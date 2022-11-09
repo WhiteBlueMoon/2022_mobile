@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //화면 넘기기용 그냥 기능자체는 없음
         gamestart = (Button) findViewById(R.id.game_start);
 
         gamestart.setOnClickListener(new View.OnClickListener() {

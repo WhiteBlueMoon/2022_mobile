@@ -27,6 +27,8 @@ public class main extends AppCompatActivity {
         transaction.add(R.id.frame,homeui).commit();
 
 
+
+        // 아래는 전체 버튼이벤트 허나 현재 오류
         home_bt = (Button) findViewById(R.id.home_bt);
         home_bt.setOnClickListener(new View.OnClickListener() {
             @Override

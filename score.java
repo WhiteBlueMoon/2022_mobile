@@ -17,8 +17,8 @@ public class score extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //inflater.inflate(R.layout.score_bd,container,false);
         //return super.onCreateView(R.layout.score_bd, container, false);
+        //현재 화면 띄우는 기능만하는중
         view = inflater.inflate(R.layout.score_bd, container, false);
         return view;
     }
