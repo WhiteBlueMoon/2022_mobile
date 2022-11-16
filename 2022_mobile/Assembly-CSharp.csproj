@@ -57,6 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\02.Scripts\Target_Fllowing.cs" />
+    <Compile Include="Assets\02.Scripts\NoteManager.cs" />
+    <Compile Include="Assets\02.Scripts\objMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
