@@ -10,6 +10,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileTeam1">
         <activity
+            android:name=".note"
+            android:exported="false" />
+        <activity
+            android:name=".help"
+            android:exported="false" />
+        <activity
+            android:name=".chapter5"
+            android:exported="false" />
+        <activity
+            android:name=".chapter4"
+            android:exported="false" />
+        <activity
+            android:name=".chapter3"
+            android:exported="false" />
+        <activity
+            android:name=".chapter2"
+            android:exported="false" />
+        <activity
+            android:name=".chapter1"
+            android:exported="false" />
+        <activity
+            android:name=".recommend"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,9 +44,7 @@
         </activity>
         <activity
             android:name=".home"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

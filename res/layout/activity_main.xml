@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/drawer_layout"
     android:background="@drawable/mainbackground"
     tools:context=".MainActivity">
 
@@ -13,10 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <ImageButton
+            android:layout_width="70dp"
+            android:layout_height="75dp"
+            android:id="@+id/btn_open"
+            android:backgroundTint="#0088C9D1"
+            android:src="@drawable/menu"
+            android:scaleType="fitXY"
+            android:layout_gravity="right"
+            />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="105dp"
             ></LinearLayout>
+
 
         <Button
             android:id="@+id/info_btn"
@@ -27,12 +38,6 @@
             android:backgroundTint="#3F51B5"
             android:text="DEFAULT LEARN"
             android:textSize="25sp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <Button
             android:id="@+id/gamestart_btn"
             android:layout_width="344dp"
@@ -48,7 +53,9 @@
     </LinearLayout>
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <include layout="@layout/activity_drawer"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>
 
 
 

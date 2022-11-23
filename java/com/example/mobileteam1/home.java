@@ -16,17 +16,18 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 public class home extends AppCompatActivity {
+
     LinearLayout selectlayout;
     int selectchange;
     Button select1;
 
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("home");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         selectlayout = findViewById(R.id.selectLayout);
         select1 = (Button) findViewById(R.id.select_btn);
         registerForContextMenu(select1);
-
         ImageButton gohome_btn = (ImageButton) findViewById(R.id.imagebutton1);
         gohome_btn.setOnClickListener(new View.OnClickListener() {
 
@@ -36,6 +37,25 @@ public class home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ImageButton gonote_btn = (ImageButton) findViewById(R.id.imagebutton3);
+        gonote_btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), note.class);
+                startActivity(intent);
+            }
+        });
+        ImageButton goremcommend_btn = (ImageButton) findViewById(R.id.imagebutton4);
+        goremcommend_btn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), recommend.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -56,17 +76,17 @@ public class home extends AppCompatActivity {
             if (selectchange == 1) {
                 switch (item.getItemId()) {
                     case R.id.item1:
-                        // 중성
+
                         Intent intent0 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://naver.com"));
                         startActivity(intent0);
                         return true;
                     case R.id.item2:
-                        // 지성
+
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://naver.com"));
                         startActivity(intent);
                         return true;
                     case R.id.item3:
-                        // 건성
+
                         Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://naver.com"));
                         startActivity(intent1);
                         return true;

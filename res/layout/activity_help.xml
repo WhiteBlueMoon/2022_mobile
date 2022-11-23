@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/helpbackground"
+    android:layout_margin="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|top"
+            android:fontFamily="@font/font1"
+            android:textSize="16dp"
+            android:text="학습에 도움이 되는 게임\n\nDEFAULTLEARN\n\n입니다 책 보면서 하는\n\n따분한 학습이 지겨우신\n\n분들에게\n\n지루하지 않은\n\n학습 환경을\n\n제공합니다."
+
+            >
+
+
+        </TextView>
+
+
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
