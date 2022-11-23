@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="#a8a7ff"
+    android:id="@+id/drawer"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SOUND"
+        android:fontFamily="@font/font1"
+        android:textSize="20dp"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D2CAE1"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/font1"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="77dp"
+            android:layout_height="60dp"
+            android:text="Play"
+            android:textSize="12dp"
+            android:id="@+id/play"
+            />
+        <Button
+            android:layout_width="77dp"
+            android:layout_height="60dp"
+            android:text="Pause"
+            android:textSize="12dp"
+            android:id="@+id/pause"
+            />
+        <Button
+            android:layout_width="77dp"
+            android:layout_height="60dp"
+            android:text="Stop"
+            android:textSize="12dp"
+            android:id="@+id/stop"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="INFOMATION"
+        android:fontFamily="@font/font1"
+        android:textSize="20dp"
+        android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D2CAE1"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/font1"
+        android:orientation="horizontal">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:id="@+id/help"
+        android:text="도움말"
+        />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font1"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+        android:text="메뉴닫기"
+        />
+
+
+
+</LinearLayout>
