@@ -9,6 +9,8 @@ public class NoteManager : MonoBehaviour
 {
     public Text[] text;
     public Button[] button;
+    public GameObject[] NextQ;
+    public GameObject[] PrevQ;
 
     private int[] SortBtn;
     private int[] Btn;
@@ -46,10 +48,24 @@ public class NoteManager : MonoBehaviour
         if (SortBtn[BtnCount] == Btn[btn_num]) // 정답
         {
             button[btn_num].enabled = false;
+
+            // 다음 기믹에 버튼 색깔이 몇 번째인지 넘겨줌
+            GameObject Rules = GameObject.FindGameObjectWithTag("FindRules");
+            Rules.GetComponent<Find_Rules>().Note(++btn_num);
+
             BtnCount++; // 정답을 맞춘 횟수를 늘림
             if(BtnCount == 4) // 정답을 맞춘 횟수가 4번 이라면
             {
-                Debug.Log("통과");
+                Rules.GetComponent<Find_Rules>().Pass();
+                // 다음 기믹 활성화
+                NextQ[0].SetActive(true);
+                NextQ[1].SetActive(true);
+                NextQ[2].SetActive(true);
+                Rules.GetComponent<Find_Rules>().ButtonSet();
+                // 방금 기믹 비활성화
+                PrevQ[0].SetActive(false);
+                PrevQ[1].SetActive(false);
+                Debug.Log("1번째 문제 통과");
             }
         }else // 오답
         {
