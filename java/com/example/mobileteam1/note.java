@@ -1,29 +1,78 @@
 package com.example.mobileteam1;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.adapters.ImageViewBindingAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class note extends AppCompatActivity {
 
+    SQLiteHelper dbHelper;
+
     RecyclerView recyclerView;
+    RecyclerAdapter recyclerAdapter;
+    Button btnAdd;
+
+    List<Memo> memoList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().setTitle("note");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        dbHelper = new SQLiteHelper(note.this);
+        memoList = dbHelper.selectAll();
+
+
         recyclerView = findViewById(R.id.recyclerview);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(note.this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerAdapter = new RecyclerAdapter(memoList);
+        recyclerView.setAdapter(recyclerAdapter);
+        btnAdd = findViewById(R.id.btnAdd);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //새로운 메모 작성
+                Intent intent = new Intent(note.this, AddActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 0){
+            String strMain = data.getStringExtra("main");
+            String strSub = data.getStringExtra("sub");
+
+            Memo memo = new Memo(strMain, strSub, 0);
+            recyclerAdapter.addItem(memo);
+            recyclerAdapter.notifyDataSetChanged();
+
+            dbHelper.insertMemo(memo);
+        }
     }
 
     class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>{
@@ -41,8 +90,48 @@ public class note extends AppCompatActivity {
             return new ItemViewHolder(view);
         }
 
-        class ItemViewHolder extends RecyclerView.ViewHolder{
+        @Override
+        public int getItemCount() {
+            return listdata.size();
+        }
 
+        @Override
+        public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
+            Memo memo = listdata.get(i);
+
+            itemViewHolder.maintext.setTag(memo.getSeq());
+
+            itemViewHolder.maintext.setText(memo.getMaintext());
+            itemViewHolder.subtext.setText(memo.getSubtext());
+            itemViewHolder.img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if(memo.getIsdone() == 0){
+                        itemViewHolder.img.setBackgroundColor(Color.GREEN);
+                        memo.setIsdone(1);
+                        recyclerAdapter.notifyDataSetChanged();
+                    } else {
+                        itemViewHolder.img.setBackgroundColor(Color.RED);
+                        memo.setIsdone(0);
+                        recyclerAdapter.notifyDataSetChanged();
+                    }
+
+                }
+
+            });
+
+
+        }
+
+        void addItem(Memo memo){
+            listdata.add(memo);
+        }
+
+        void removeItem(int position){
+            listdata.remove(position);
+        }
+        class ItemViewHolder extends RecyclerView.ViewHolder{
             private TextView maintext;
             private TextView subtext;
             private ImageView img;
@@ -53,6 +142,26 @@ public class note extends AppCompatActivity {
                 maintext = itemView.findViewById(R.id.item_maintext);
                 subtext = itemView.findViewById(R.id.item_subtext);
                 img = itemView.findViewById(R.id.item_image);
+
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+
+                        int position = getAdapterPosition();
+                        int seq = (int)maintext.getTag();
+
+                        if(position != RecyclerView.NO_POSITION){
+                            dbHelper.deleteMemo(seq);
+                            removeItem(position);
+                            notifyDataSetChanged();
+                        }
+
+
+                        return false;
+                    }
+                });
+
+
 
             }
 

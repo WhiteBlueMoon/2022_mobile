@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileTeam1">
         <activity
+            android:name=".AddActivity"
+            android:exported="false" />
+        <activity
             android:name=".note"
             android:exported="false" />
         <activity

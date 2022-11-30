@@ -5,17 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#CCCCCC"
     tools:context=".note">
 
-        <ScrollView
-            android:fillViewport="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></ScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:text="메모추가"
+        android:textSize="20dp"
+        android:layout_width="400dp"
+        android:layout_height="75dp"
+        android:backgroundTint="#B78DA8A8"
+        android:layout_gravity="center"
+        />
 
 
 </LinearLayout>
