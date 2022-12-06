@@ -42,7 +42,7 @@
             android:orientation="vertical">
 
             <ListView
-                android:id="@+id/score_bd"
+                android:id="@+id/score_bd_W"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"></ListView>
         </LinearLayout>

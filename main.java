@@ -12,15 +12,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+
 public class main extends AppCompatActivity {
 
-    FragmentManager manager;
-    FragmentTransaction transaction;
+    private FragmentManager manager;
 
-    Button home_bt,score_bt,note_bt,propose_bt;
-    homeui homeui;
-    score score;
-    note note;
+    private Button home_bt,score_bt,note_bt,propose_bt;
+    private homeui homeui;
+    private score score;
+    private note note;
+
+    int a;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,21 +32,29 @@ public class main extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        //manager = getSupportFragmentManager();
-        transaction  = getSupportFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
 
-        //transaction = manager.beginTransaction();
+        a=0;
+
+        manager = getSupportFragmentManager();
+
         homeui = new homeui();
+        manager.beginTransaction().add(R.id.frame,homeui).commit();
 
-        //transaction.replace(R.id.frame,homeui).commit();
-        transaction.replace(R.id.frame,homeui).commitAllowingStateLoss();
         // 아래는 전체 버튼이벤트 허나 현재 오류
+
         home_bt = (Button) findViewById(R.id.home_bt);
         home_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame,homeui).commit();
+                if(homeui == null) {
+                    homeui = new homeui();
+                    manager.beginTransaction().add(R.id.frame,homeui).commit();       //게임시작 플래그먼트
+                }
+
+                if(homeui != null) manager.beginTransaction().show(homeui).commit();  //게임시작
+                if(score != null) manager.beginTransaction().hide(score).commit();    //점수
+                if(note != null) manager.beginTransaction().hide(note).commit();      //오답
             }
         });
 
@@ -51,9 +62,18 @@ public class main extends AppCompatActivity {
         score_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                score = new score();
-                transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame,score).commit();
+                if(score == null) {
+                    score = new score();
+                    manager.beginTransaction().add(R.id.frame,score).commit();        //점수 플래그먼트
+                }
+
+                if(homeui != null) manager.beginTransaction().hide(homeui).commit();  //게임시작
+                if(score != null) {
+                    bundle.putInt("a",a);
+                    score.setArguments(bundle);
+                    manager.beginTransaction().show(score).commit();
+                }    //점수
+                if(note != null) manager.beginTransaction().hide(note).commit();      //오답
             }
         });
 
@@ -61,9 +81,14 @@ public class main extends AppCompatActivity {
         note_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              note = new note();
-              transaction = getSupportFragmentManager().beginTransaction();
-              transaction.replace(R.id.frame,note).commit();
+                if(note == null) {
+                    note = new note();
+                    manager.beginTransaction().add(R.id.frame,note).commit();          //오답
+                }
+
+                if(homeui != null) manager.beginTransaction().hide(homeui).commit();  //게임시작
+                if(score != null) manager.beginTransaction().hide(score).commit();    //점수
+                if(note != null) manager.beginTransaction().show(note).commit();      //오답
             }
         });
 

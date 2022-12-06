@@ -1,6 +1,5 @@
 package com.example.teamproject;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -8,35 +7,60 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class score extends Fragment {
 
-    View view;
-    TextView difficulty1_txt;
-    int difficulty = 0;
-    Adapter adapter;
-    ListView listView;
+    private View view;
+    private ListView listView;
+    private Button b;
+    private ArrayList<ListItem> arrayList = new ArrayList<ListItem>();
+    private MyAdapter myAdapter;
+    private byte[] text = new byte[1024];
+    int a;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(R.layout.score_bd, container, false);
-        //현재 화면 띄우는 기능만하는중
         view = inflater.inflate(R.layout.score_bd, container, false);
-        difficulty1_txt = (TextView) view.findViewById(R.id.difficulty1_txt);
-        registerForContextMenu(difficulty1_txt);  //임시
-        listView = (ListView) view.findViewById(R.id.score_bd);
+
+        //목적은 테스트용이었으나 갱신용으로 바뀜
+        b = view.findViewById(R.id.test);
+
+
+        listView = (ListView) view.findViewById(R.id.score_bd_S);
+
+        a=0;
+        FileRead();
+
+        myAdapter = new MyAdapter(view.getContext(),arrayList);
+        listView.setAdapter(myAdapter);
+
+
+        //listview 갱신
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                arrayList.clear();
+                FileRead();
+                listView.setAdapter(myAdapter);
+            }
+        });
+
 
 
         //difficulty1_txt.setOnClickListener();
@@ -44,65 +68,27 @@ public class score extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
 
-        MenuInflater menuInflater = getActivity().getMenuInflater();
-        if(v==difficulty1_txt){
-            menu.setHeaderTitle("난이도 선택");
-            menuInflater.inflate(R.menu.difficulty,menu);
+    public void FileRead(){
+
+        FileInputStream infs;
+        for (int n = 0 ; n < 20 ; n++) {
+            try {
+                infs = getActivity().openFileInput("list" + Integer.toString(n) + ".dat");
+
+                infs.read(text);
+                infs.close();
+                String str = "저장 " + Integer.toString(n);
+                String ViewText = (new String(text).trim());
+                Arrays.fill(text, (byte) 0);
+
+                arrayList.add(new ListItem(str, ViewText));
+                //return 1;
+            } catch (IOException e) {
+                //return 0;
+                break;
+            }
+
         }
     }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.hard:
-                difficulty1_txt.setText("난이도 상");
-                difficulty = 3;
-                return true;
-            case R.id.normal:
-                difficulty1_txt.setText("난이도 중");
-                difficulty = 2;
-                return true;
-            case R.id.easy:
-                difficulty1_txt.setText("난이도 하");
-                difficulty = 1;
-                return true;
-        }
-
-        return super.onContextItemSelected(item);
-    }
-/*
-    public class setadapter extends BaseAdapter{
-
-        public setadapter() {
-            super();
-        }
-
-        @Override
-        public int getCount() {
-            return 0;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            return null;
-        }
-
-
-    }
-
- */
 }
