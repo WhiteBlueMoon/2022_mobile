@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public class chapter1 extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ko.khanacademy.org/math/arithmetic/arith-review-add-subtract/arith-review-basic-add-subtract/v/basic-addition"));
+                Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://soltudy.tistory.com/1353"));
                 startActivity(intent1);
             }
         });
@@ -34,7 +35,7 @@ public class chapter1 extends AppCompatActivity {
         gochapter12pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.coupang.com/np/search?component=&q=%EC%88%98%ED%95%99+%EB%8D%A7%EC%85%88&channel=user"));
+                Intent intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.yes24.com/Product/goods/12580964"));
                 startActivity(intent2);
             }
         });
@@ -50,7 +51,8 @@ public class chapter1 extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.text);
 
         Toast toast = new Toast(this);
-        text.setText("4 + 10 = 14\n" + "10 - 4 = 6");
+        text.setText("•하늘색 사각형의 개수와 흰색 사각형의 개수를 확인하세요\n" +
+                "•분모가 같다면 분자가 큰 분수가 더 큰 분수입니다");
         toast.setGravity(Gravity.CENTER, 0, -25);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
@@ -67,7 +69,7 @@ public class chapter1 extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.text);
 
         Toast toast = new Toast(this);
-        text.setText("40 + 100 = 140\n" + "100 - 36 = 64");
+        text.setText("•칠판에 써진 분수의 규칙을 찾으세요");
         toast.setGravity(Gravity.CENTER, 0, -25);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
@@ -83,7 +85,7 @@ public class chapter1 extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.text);
 
         Toast toast = new Toast(this);
-        text.setText("440 + 1520 = 1960\n"+ "1520 - 657 = 863");
+        text.setText("•자연수와 분모를 곱하고 분자를 더하면 됩니다");
         toast.setGravity(Gravity.CENTER, 0, -25);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);

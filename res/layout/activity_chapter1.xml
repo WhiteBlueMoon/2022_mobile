@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:id="@+id/chapter11pic"
-            android:backgroundTint="#00FFFFFF"
+            android:backgroundTint="#83FFFFFF"
             android:src="@drawable/chapter11pic"></ImageButton>
 
         <ImageButton
