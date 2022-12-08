@@ -38,7 +38,7 @@ public class score extends Fragment {
         //return super.onCreateView(R.layout.score_bd, container, false);
         view = inflater.inflate(R.layout.score_bd, container, false);
 
-        //목적은 테스트용이었으나 갱신용으로 바뀜
+        //목적은 테스트용 버튼이었으나 갱신용으로 바뀜
         b = view.findViewById(R.id.test);
 
 
@@ -51,7 +51,7 @@ public class score extends Fragment {
         listView.setAdapter(myAdapter);
 
 
-        //listview 갱신
+        //listview 갱신 (점수 현황판)
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

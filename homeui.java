@@ -29,10 +29,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class homeui extends Fragment {
-    private View view,popup;
+    private View view;
     private Button enter,difficulty_set;
-    private int difficulty,enter_f, enter_Num,num;
-    private FragmentManager manager;
+    private int difficulty, enter_Num,num;
     private String fileName;
     private FileOutputStream outputStream;
 
@@ -53,10 +52,6 @@ public class homeui extends Fragment {
         editor = sharedPreferences.edit();
         num = sharedPreferences.getInt("num",0);
         enter_Num = sharedPreferences.getInt("enter_Num",1);
-
-        System.out.println(num);
-
-
 
 
         enter.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +140,9 @@ public class homeui extends Fragment {
     }
 
     public void filesave(){
+
+        //플레이 기록 저장, 최대 저장횟수는 현재 20으로 제한해둠
+
         try {
             fileName = "list"+Integer.toString(num)+".dat";
             outputStream = getActivity().openFileOutput(fileName,getContext().MODE_PRIVATE);
@@ -172,8 +170,8 @@ public class homeui extends Fragment {
                 num=0;
             }
             Toast.makeText(getActivity().getApplicationContext(), "저장됨", Toast.LENGTH_LONG ).show();
-            //수치 일시저장 테스트할땐 //해놓자
 
+            //수치 일시저장 테스트할땐 //해놓자
             editor.putInt("num",num);
             editor.putInt("enter_Num",enter_Num);
             editor.apply();

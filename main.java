@@ -22,8 +22,6 @@ public class main extends AppCompatActivity {
     private score score;
     private note note;
 
-    int a;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,16 +30,12 @@ public class main extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        Bundle bundle = new Bundle();
-
-        a=0;
-
         manager = getSupportFragmentManager();
 
         homeui = new homeui();
         manager.beginTransaction().add(R.id.frame,homeui).commit();
 
-        // 아래는 전체 버튼이벤트 허나 현재 오류
+        //아래의 모든 버튼은 화면 띄워주는용도로만 사용함 그 이외 기능 X
 
         home_bt = (Button) findViewById(R.id.home_bt);
         home_bt.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +63,6 @@ public class main extends AppCompatActivity {
 
                 if(homeui != null) manager.beginTransaction().hide(homeui).commit();  //게임시작
                 if(score != null) {
-                    bundle.putInt("a",a);
-                    score.setArguments(bundle);
                     manager.beginTransaction().show(score).commit();
                 }    //점수
                 if(note != null) manager.beginTransaction().hide(note).commit();      //오답
@@ -93,6 +85,7 @@ public class main extends AppCompatActivity {
         });
 
 
+        //다른방식의 프래그먼트
 
     /*    propose_bt = (Button) findViewById(R.id.propose_bt);
         propose_bt.setOnClickListener(new View.OnClickListener() {
