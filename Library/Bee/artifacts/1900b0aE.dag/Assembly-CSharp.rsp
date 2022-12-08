@@ -356,9 +356,11 @@
 "Assets/02.Scripts/Find_Rules.cs"
 "Assets/02.Scripts/InequalityShape.cs"
 "Assets/02.Scripts/Line_connection.cs"
+"Assets/02.Scripts/Menu.cs"
 "Assets/02.Scripts/NoteManager.cs"
 "Assets/02.Scripts/objMove.cs"
 "Assets/02.Scripts/Shape.cs"
+"Assets/02.Scripts/SoundManager.cs"
 "Assets/02.Scripts/Target_Fllowing.cs"
 -langversion:9.0
 

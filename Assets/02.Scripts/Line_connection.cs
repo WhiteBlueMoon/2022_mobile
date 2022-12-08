@@ -11,6 +11,7 @@ public class Line_connection : MonoBehaviour
     public Text[] NumerText;
     public Text[] DenomText;
     public Image[] ImproperColor; // 가분수 색깔
+    public GameObject clear;
     
     private int[] MixedInt = new int[3]; // 대분수 값
     private int[] Numerator = new int[3]; // 분자 값
@@ -143,7 +144,11 @@ public class Line_connection : MonoBehaviour
             }
         }
 
-        if (TorF) Debug.Log("3번째 문제 통과");
+        if (TorF)
+        {
+            clear.SetActive(true);
+            Debug.Log("5번째 문제 통과");
+        }
         else Debug.Log("아님");
     }
 }

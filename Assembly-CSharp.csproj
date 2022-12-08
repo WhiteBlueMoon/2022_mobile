@@ -64,6 +64,8 @@
     <Compile Include="Assets\02.Scripts\Shape.cs" />
     <Compile Include="Assets\02.Scripts\ColorBox.cs" />
     <Compile Include="Assets\02.Scripts\Line_connection.cs" />
+    <Compile Include="Assets\02.Scripts\SoundManager.cs" />
+    <Compile Include="Assets\02.Scripts\Menu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
